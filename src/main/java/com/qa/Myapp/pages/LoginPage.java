@@ -21,7 +21,7 @@ public class LoginPage
 		private By login=By.xpath("//input[@value='Login']");
 		private By forgotpswd=By.linkText("Forgotten Password");
 		private By reglink=By.linkText("Register");
-		private By reglink2=By.linkText("Register2");
+		
 		private By loginerrormsg=By.cssSelector("div.alert.alert-danger.alert-dismissible");
 		
 		//public constructor
