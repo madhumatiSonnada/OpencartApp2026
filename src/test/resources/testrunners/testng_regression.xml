@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Open Cart Test Suite" verbose="4" thread-count="1" parallel="tests">
+	<listeners>
+		<listener
+			class-name="com.qa.Myapp.listeners.ExtentReportListener" />
+		<listener
+			class-name="com.qa.Myapp.listeners.TestAllureListener" />
+			<listener
+			class-name="com.qa.Myapp.listeners.AnnotationTransformer" />
+
+	</listeners>
+	
+	<test name="Open Cart Login Page ">
+		<classes>
+			<class name="com.qa.Myapp.tests.loginPageTest" />
+		</classes>
+	</test>
+	
+	<test name="Open Cart Account Page">
+		
+		<classes>
+			<class name="com.qa.Myapp.tests.AccountsPageTest" />
+		</classes>
+	</test>
+	
+	
+	<test name="Open Cart NegativeLogin Test ">
+		
+		<classes>
+			<class name="com.qa.Myapp.tests.LoginNegativeTest" />
+		</classes>
+	</test>
+<!-- 	<test name="Open Cart Login Page Test _ firefox_57">
+		<parameter name="browser" value="firefox"/>
+		<parameter name="browserversion" value="57.0"/>
+		<classes>
+			<class name="com.qa.opencart.tests.LoginpageTest" />
+		</classes>
+	</test>
+	
+	<test name="Open Cart Login Page Test _ firefox_83">
+		<parameter name="browser" value="firefox"/>
+		<parameter name="browserversion" value="83.0"/>
+		<classes>
+			<class name="com.qa.opencart.tests.LoginpageTest" />
+		</classes>
+	</test>
+	
+	 <test name="Open Cart Account Page Test _ chromes">
+		 <parameter name="browser" value="chrome"/>
+		<classes>
+			<class name="com.qa.opencart.tests.AccountspageTest" />
+		</classes>
+	</test>
+	
+	<test name="Open Cart Account Page Test _ firefox">
+		 <parameter name="browser" value="firefox"/>
+		<classes>
+			<class name="com.qa.opencart.tests.AccountspageTest" />
+		</classes>
+	</test>                                                         
+	<test name="Open Cart Login Page Test _ chrome">         
+	 <t	<parameter name="browser" value="chrome"/>           est name="Open Cart Productinfo Page Test _ chrome_89">
+		<pa	<classes>                                            rameter name="browser" value="chrome"/>
+		<cl		<class name="com.qa.opencart.tests.LoginpageTest"asses>
+			<class name="com.qa.opencart.tests.ProductinfopageTest" />
+		</classes>
+	</test>
+	
+	<test name="Open Cart Registrations Page Test _ chrome_89">
+		<parameter name="browser" value="chrome"/>
+		<classes>
+			<class name="com.qa.opencart.tests.registrationpageTest" />
+		</classes>
+	</test>
+	
+	<test name="Open Cart Login Page Negative Test _ chrome_89">
+		<parameter name="browser" value="chrome"/>
+		<classes>
+			<class name="com.qa.opencart.tests.LoginpageNegativeTest" />
+		</classes>
+	</test>-->
+	
+</suite>
