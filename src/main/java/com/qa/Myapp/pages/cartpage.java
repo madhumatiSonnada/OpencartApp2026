@@ -21,4 +21,8 @@ public class cartpage
 	  WebDriver driver=new ChromeDriver();
 	  //driver.findElement(login);
 	}
+	public void featurev1()
+	{
+		System.out.println("Added feature v1.0");
+	}
 }
