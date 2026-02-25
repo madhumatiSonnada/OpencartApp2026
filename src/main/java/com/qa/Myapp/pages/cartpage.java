@@ -25,4 +25,8 @@ public class cartpage
 	{
 		System.out.println("Added feature v1.0");
 	}
+	public void featurev2()
+	{
+		System.out.println("added v2.0");
+	}
 }
