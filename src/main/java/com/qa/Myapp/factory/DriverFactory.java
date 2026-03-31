@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
@@ -12,6 +14,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.log4testng.Logger;
 
@@ -40,15 +43,34 @@ public class DriverFactory
 		
 		if(browsername.equalsIgnoreCase(Browser.CHROME_BROWSER_VALUE))
 		{
-			WebDriverManager.chromedriver().setup();
-			//driver=new ChromeDriver(opmanager.getChromeoptions());
-			tldriver.set(new ChromeDriver(opmanager.getChromeoptions()));
+			log.info("running test on chrome brower....");
+			
+			if (Boolean.parseBoolean(prop.getProperty("remote")))
+			{
+				init_remoteWebDriver(Browser.CHROME_BROWSER_VALUE);
+			}
+			else 
+			{
+				//local execution
+				WebDriverManager.chromedriver().setup();
+				//driver=new ChromeDriver(opmanager.getChromeoptions());
+				tldriver.set(new ChromeDriver(opmanager.getChromeoptions()));
+			}
+			
 		}
 		else if(browsername.equalsIgnoreCase(Browser.FIREFOX_BROWSER_VALUE))
 		{
-			WebDriverManager.chromedriver().setup();
-			driver=new FirefoxDriver();
-			//tldriver=new FirefoxDriver(opmanager.getFirefoxoptions())
+			if(Boolean.parseBoolean(prop.getProperty("remote")))
+			{
+				init_remoteWebDriver(Browser.FIREFOX_BROWSER_VALUE);
+			}
+			else
+			{
+				WebDriverManager.chromedriver().setup();
+				//driver=new FirefoxDriver();
+				tldriver.set(new FirefoxDriver(opmanager.getFirefoxOptions()));
+			}
+			
 		}
 		else if(browsername.equalsIgnoreCase(Browser.SAFARI_BROWSER_VALUE))
 		{
@@ -56,7 +78,7 @@ public class DriverFactory
 		}
 		else
 		{
-			log.info("Please pass the correct browser");
+			log.info("Please pass the correct browser" +browsername);
 			//System.out.println("Please pass the correct browser");
 		}
 		//driver.manage().deleteAllCookies();
@@ -65,6 +87,33 @@ public class DriverFactory
 		return getDriver();
 	}
 	
+	private void init_remoteWebDriver(String browsername )
+	{
+		
+		System.out.println("Running test cases on remote grid server: " +browsername);
+		if(browsername.equalsIgnoreCase("chrome"))
+			
+		{
+				try {
+					tldriver.set(new RemoteWebDriver(new URL(prop.getProperty("huburl")),opmanager.getChromeoptions()));
+				} catch (MalformedURLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}
+		
+		else if(browsername.equalsIgnoreCase("firefox"))
+			
+		{
+				try {
+					tldriver.set(new RemoteWebDriver(new URL(prop.getProperty("huburl")),opmanager.getFirefoxOptions()));
+				} catch (MalformedURLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}
+	}
+
 	public static WebDriver getDriver()
 	{
 		return tldriver.get();

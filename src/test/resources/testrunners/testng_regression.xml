@@ -12,13 +12,16 @@
 	</listeners>
 	
 	<test name="Open Cart Login Page ">
+	<parameter name="browser" value="chrome" />
+		
 		<classes>
 			<class name="com.qa.Myapp.tests.loginPageTest" />
 		</classes>
 	</test>
 	
 	<test name="Open Cart Account Page">
-		
+		<parameter name="browser" value="chrome" />
+	
 		<classes>
 			<class name="com.qa.Myapp.tests.AccountsPageTest" />
 		</classes>
@@ -26,6 +29,7 @@
 	
 	
 	<test name="Open Cart NegativeLogin Test ">
+		<parameter name="browser" value="firefox" />
 		
 		<classes>
 			<class name="com.qa.Myapp.tests.LoginNegativeTest" />
